@@ -14,20 +14,21 @@ class PersonSpeakers {
     }
 
     Speaker createShoutingSpeaker() {
-        // TODO: stwórz odpowiednią implementację interfejsu Speaker, tak aby wywołanie jego metody say() powodowało
-        //  zwrócenie tekstu powitania zapisanego dużymi literami. Na zasadzie:
-        //      "HELLO. I'M MARIA.", gdzie Maria to imię danej osoby przekazanej w argumencie metody say().
-        //  Wywołanie metody say() interfejsu odbywa się w testach metody.
-        //  Aby być pewnym, że użyta jest prawidłowa pisownia zaleca się użycie odpowiedniej stałej.
-        return null;
+        return p -> HELLO.toUpperCase() + p.getName().toUpperCase();
     }
 
     Speaker createGreetLocalSpeaker() {
-        // TODO: stwórz odpowiednią implementację interfejsu Speaker, tak aby wywołanie jego metody say() powodowało
-        //  zwrócenie tekstu powitania w odpowiednim języku. Przykładowo dla języka angielskiego:
-        //       "Hello. I'm Antonina.", gdzie Antonina to imię danej osoby przekazanej w argumencie metody say().
-        //  Wywołanie metody say() interfejsu odbywa się w testach metody.
-        //  Aby być pewnym, że użyta jest prawidłowa pisownia zaleca się użycie odpowiednich stałych.
-        return null;
+        return p -> {
+            switch (p.getCountryOfLiving()) {
+                case USA:
+                    return HELLO + p.getName();
+                case PL:
+                    return CZESC + p.getName();
+                case DE:
+                    return HALLO + p.getName();
+                default:
+                    return HELLO + p.getName();
+            }
+        };
     }
 }
